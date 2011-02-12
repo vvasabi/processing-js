@@ -8034,8 +8034,8 @@
       // different behaviour than Java's. A Java-compatible implementation is
       // provided here.
       var result = [], currSubject = subject, pos;
-      while ((result.length < (limit - 1))
-          && ((pos = currSubject.search(pattern)) != -1)) {
+      while (((pos = currSubject.search(pattern)) != -1)
+          && (result.length < (limit - 1))) {
         var match = pattern.exec(currSubject).toString();
         result.push(currSubject.substring(0, pos));
         currSubject = currSubject.substring(pos + match.length);
@@ -16437,7 +16437,8 @@
       "translate", "triangle", "trim", "unbinary", "unhex", "updatePixels",
       "use3DContext", "vertex", "width", "XMLElement", "year", "__frameRate",
       "__keyPressed", "__mousePressed", "__int_cast", "__replace", "__replaceAll", 
-      "__replaceFirst", "__equals", "__hashCode", "__toCharArray", "__printStackTrace"];
+      "__replaceFirst", "__equals", "__hashCode", "__toCharArray", "__printStackTrace",
+      "__split"];
 
     var members = {};
     var i, l;
@@ -16781,7 +16782,7 @@
       var repeatJavaReplacement;
       do {
         repeatJavaReplacement = false;
-        s = s.replace(/((?:'\d+'|\b[A-Za-z_$][\w$]*\s*(?:"[BC]\d+")*)\s*\.\s*(?:[A-Za-z_$][\w$]*\s*(?:"[BC]\d+"\s*)*\.\s*)*)(replace|replaceAll|replaceFirst|equals|hashCode|toCharArray|printStackTrace)\s*"B(\d+)"/g, 
+        s = s.replace(/((?:'\d+'|\b[A-Za-z_$][\w$]*\s*(?:"[BC]\d+")*)\s*\.\s*(?:[A-Za-z_$][\w$]*\s*(?:"[BC]\d+"\s*)*\.\s*)*)(replace|replaceAll|replaceFirst|equals|hashCode|toCharArray|printStackTrace|split)\s*"B(\d+)"/g, 
           function(all, subject, method, atomIndex) {
             var atom = atoms[atomIndex];
             repeatJavaReplacement = true;
