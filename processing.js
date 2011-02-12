@@ -8026,7 +8026,7 @@
       var pattern = new RegExp(regex);
 
       // If limit is not specified, use JavaScript's built-in String.split.
-      if (limit == undef) {
+      if ((limit == undef) || (limit < 1)) {
         return subject.split(pattern);
       }
 
@@ -8040,7 +8040,7 @@
         result.push(currSubject.substring(0, pos));
         currSubject = currSubject.substring(pos + match.length);
       }
-      if (pos != -1) {
+      if ((pos != -1) || (currSubject != "")) {
         result.push(currSubject);
       }
       return result;

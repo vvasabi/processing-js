@@ -20,3 +20,16 @@ _checkEqual(2, sub.length);
 _checkEqual("", sub[0]);
 _checkEqual("", sub[1]);
 
+s = "abc";
+sub = s.split("b", 0);
+_checkEqual("a", sub[0]);
+_checkEqual("c", sub[1]);
+
+s = "abc";
+sub = s.split("b", 1);
+_checkEqual("abc", sub[0]);
+
+s = "abc";
+sub = s.split("d", 1);
+_checkEqual("abc", sub[0]);
+
