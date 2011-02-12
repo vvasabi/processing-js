@@ -7933,6 +7933,40 @@
       return chars;
     };
     /**
+     * The __split() function splits a string using the regex delimiter
+     * specified. If limit is specified, the resultant array will have number 
+     * of elements equal to or less than the limit.
+     *
+     * @param {String} subject string to be split
+     * @param {String} regexp  regex string used to split the subject
+     * @param {int}    limit   max number of tokens to be returned
+     *
+     * @return {String[]} an array of tokens from the split string
+     */
+    p.__split = function(subject, regex, limit) {
+      var pattern = new RegExp(regex);
+
+      // If limit is not specified, use JavaScript's built-in String.split.
+      if (!limit) {
+        return subject.split(pattern);
+      }
+
+      // If limit is specified, JavaScript's built-in String.split has a
+      // different behaviour than Java's. A Java-compatible implementation is
+      // provided here.
+      var result = [], currSubject = subject, pos;
+      while ((result.length < (limit - 1))
+          && ((pos = currSubject.search(pattern)) != -1)) {
+        var match = pattern.exec(currSubject).toString();
+        result.push(currSubject.substring(0, pos));
+        currSubject = currSubject.substring(pos + match.length);
+      }
+      if (pos != -1) {
+        result.push(currSubject);
+      }
+      return result;
+    };
+    /**
      * The match() function matches a string with a regular expression, and returns the match as an
      * array. The first index is the matching expression, and array elements
      * [1] and higher represent each of the groups (sequences found in parens).
