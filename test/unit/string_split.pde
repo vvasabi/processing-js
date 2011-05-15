@@ -1,3 +1,5 @@
+// Unit tests for String.split() method that emulates Java's behaviour.
+// See #864 for more info.
 String s = "abcdefghijklmnopqrstuvwxyz";
 String[] sub = s.split("[hb]");
 _checkEqual("a", sub[0]);
